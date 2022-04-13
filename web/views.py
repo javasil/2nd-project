@@ -1,19 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
-
+from .models import Blog,Contact,Service,Slider,Project,Testimonial,Author
 
 
 def index(request):
+    sliders = Slider.objects.all()
     context= {
-        "is_index":True
+        "is_index": True,
+        "sliders": sliders,
+        "number": 30,
     }
     return render(request,'web/index.html',context)
 
 
 def about_us(request):
     context= {
-        "is_abous_us":True    
+        "is_abous_us":True
     }
     return render(request,'web/about-us.html',context)
 
@@ -86,14 +89,3 @@ def notfound(request):
         "is_notfound":True
     }
     return render(request,'web/404.html',context)
-
-
-
-
-
-
-
-
-
-
-
